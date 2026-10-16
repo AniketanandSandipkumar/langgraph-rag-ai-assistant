@@ -9,10 +9,11 @@ import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 import json
+import time
 import streamlit as st
 from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 
-from agent import MessagesState, agent
+from agent import invoke_agent
 
 
 # ============================================================================
@@ -520,13 +521,23 @@ with st.sidebar:
                         tool_name = call.get("name", "Unknown")
                         args = call.get("args", {})
                         result = call.get("result", "")
+                        tool_status = call.get("status", "unknown")
+                        duration_ms = call.get("duration_ms")
 
                         icon = (
                             "⌕"
                             if "search" in tool_name.lower()
                             else "∑"
-                            if "calc" in tool_name.lower()
+                            if tool_name in {"add", "multiply", "divide"}
                             else "◇"
+                        )
+                        status_label = {
+                            "succeeded": "✓ SUCCEEDED",
+                            "failed": "✕ FAILED",
+                            "unknown": "STATUS UNKNOWN",
+                        }.get(tool_status, "STATUS UNKNOWN")
+                        status_color = "#22c55e" if tool_status == "succeeded" else (
+                            "#ef4444" if tool_status == "failed" else "#a1a1aa"
                         )
 
                         st.markdown(
@@ -534,11 +545,15 @@ with st.sidebar:
                             <div class="tool-header">
                                 <div class="tool-icon">{icon}</div>
                                 <span class="tool-name">{tool_name}</span>
-                                <span class="tool-complete">✓ DONE</span>
+                                <span class="tool-complete" style="color:{status_color}">
+                                    {status_label}
+                                </span>
                             </div>
                             """,
                             unsafe_allow_html=True,
                         )
+                        if duration_ms is not None:
+                            st.caption(f"Execution time: {duration_ms} ms")
 
                         with st.expander("View execution details"):
 
@@ -733,127 +748,125 @@ if pending_prompt:
 # ============================================================================
 # AGENT EXECUTION
 # ============================================================================
+# ============================================================================
+# AGENT EXECUTION
+# ============================================================================
 
 if prompt:
+    st.session_state.chat_history.append(("user", prompt))
 
-    # ---------------------------------------------------------------
-    # User message
-    # ---------------------------------------------------------------
-
-    st.session_state.chat_history.append(
-        ("user", prompt)
-    )
-
-    with st.chat_message(
-        "user",
-        avatar="👤",
-    ):
+    with st.chat_message("user", avatar="👤"):
         st.markdown(prompt)
 
-    # ---------------------------------------------------------------
-    # Agent
-    # ---------------------------------------------------------------
-
-    with st.chat_message(
-        "assistant",
-        avatar="🤖",
-    ):
-
-        with st.status(
-            "Processing your request...",
-            expanded=False,
-        ) as status:
-
-            initial_state: MessagesState = {
-                "messages": [
-                    HumanMessage(content=prompt)
-                ],
-                "llm_calls": 0,
-            }
-
-            result = agent.invoke(initial_state)
-
-            status.update(
-                label="Response generated",
-                state="complete",
+    with st.chat_message("assistant", avatar="🤖"):
+        try:
+            with st.status(
+                "Processing your request...",
                 expanded=False,
+            ) as status:
+                # Feed recent user/assistant turns to the graph, not just the
+                # newest prompt. Keep the window bounded to control token usage.
+                conversation_messages = []
+                for role, content in st.session_state.chat_history[-12:]:
+                    if role == "user":
+                        conversation_messages.append(HumanMessage(content=content))
+                    elif role == "assistant" and content:
+                        conversation_messages.append(AIMessage(content=content))
+
+                result = invoke_agent(conversation_messages)
+                messages = result["messages"]
+
+                # Associate each ToolMessage with its original tool call.
+                pending_calls: dict[str, dict] = {}
+                for msg in messages:
+                    if isinstance(msg, AIMessage) and msg.tool_calls:
+                        for tool_call in msg.tool_calls:
+                            pending_calls[tool_call["id"]] = {
+                                "name": tool_call.get("name", "Unknown"),
+                                "args": tool_call.get("args", {}),
+                                "result": "",
+                                "status": "unknown",
+                                "duration_ms": None,
+                            }
+                    elif isinstance(msg, ToolMessage):
+                        record = pending_calls.get(msg.tool_call_id)
+                        if record is not None:
+                            record["result"] = str(msg.content)
+                            metadata = getattr(msg, "response_metadata", {}) or {}
+                            inferred_status = (
+                                "failed"
+                                if str(msg.content).startswith("TOOL_ERROR:")
+                                else "succeeded"
+                            )
+                            record["status"] = metadata.get("status", inferred_status)
+                            record["duration_ms"] = metadata.get("duration_ms")
+
+                # Store only this turn's tool calls in the sidebar.
+                trace = list(pending_calls.values())
+                st.session_state.tool_traces.append(trace)
+
+                final_message = next(
+                    (
+                        msg for msg in reversed(messages)
+                        if isinstance(msg, AIMessage) and not msg.tool_calls
+                    ),
+                    None,
+                )
+                final_answer = (
+                    final_message.content
+                    if final_message is not None
+                    else ""
+                )
+                if not isinstance(final_answer, str):
+                    final_answer = str(final_answer)
+
+                if final_answer:
+                    st.markdown(final_answer)
+                    st.session_state.chat_history.append(("assistant", final_answer))
+                    status.update(
+                        label="Response generated",
+                        state="complete",
+                        expanded=False,
+                    )
+                else:
+                    st.warning("The agent did not return a final response.")
+                    status.update(
+                        label="Request did not complete",
+                        state="error",
+                        expanded=True,
+                    )
+
+            # Display evidence returned by the retrieval tool. These passages
+            # are retrieved context, not an automatic guarantee of entailment.
+            retrieval_results = [
+                msg for msg in messages
+                if isinstance(msg, ToolMessage)
+                and (
+                    getattr(msg, "name", None) == "search_docs"
+                    or msg.tool_call_id in pending_calls
+                    and pending_calls[msg.tool_call_id].get("name") == "search_docs"
+                )
+            ]
+            if retrieval_results:
+                with st.expander("Retrieved evidence and source documents"):
+                    for result_number, tool_message in enumerate(retrieval_results, start=1):
+                        st.markdown(f"**Retrieval result {result_number}**")
+                        st.code(str(tool_message.content)[:8000], language="text")
+
+        except Exception as exc:
+            st.error(
+                f"The request failed ({type(exc).__name__}). "
+                "Check your API configuration, FAISS index, and application logs."
+            )
+            st.session_state.tool_traces.append(
+                [{
+                    "name": "request",
+                    "args": {},
+                    "result": f"Request failed: {type(exc).__name__}",
+                    "status": "failed",
+                    "duration_ms": None,
+                }]
             )
 
-        # -----------------------------------------------------------
-        # Parse messages
-        # -----------------------------------------------------------
-
-        messages = result["messages"]
-
-        pending_calls: dict[str, dict] = {}
-
-        for msg in messages:
-
-            if (
-                isinstance(msg, AIMessage)
-                and msg.tool_calls
-            ):
-
-                for tc in msg.tool_calls:
-
-                    pending_calls[tc["id"]] = {
-                        "name": tc["name"],
-                        "args": tc["args"],
-                        "result": "",
-                    }
-
-            elif isinstance(msg, ToolMessage):
-
-                if msg.tool_call_id in pending_calls:
-
-                    pending_calls[
-                        msg.tool_call_id
-                    ]["result"] = msg.content
-
-        trace = list(
-            pending_calls.values()
-        )
-
-        st.session_state.tool_traces.append(
-            trace
-        )
-
-        # -----------------------------------------------------------
-        # Find final answer
-        # -----------------------------------------------------------
-
-        final_answer = ""
-
-        for msg in reversed(messages):
-
-            if (
-                isinstance(msg, AIMessage)
-                and not msg.tool_calls
-            ):
-
-                final_answer = msg.content
-                break
-
-        # -----------------------------------------------------------
-        # Display response
-        # -----------------------------------------------------------
-
-        if final_answer:
-
-            st.markdown(final_answer)
-
-        else:
-
-            st.markdown(
-                "_The agent did not return a final response._"
-            )
-
-        st.session_state.chat_history.append(
-            (
-                "assistant",
-                final_answer,
-            )
-        )
-
-    # Refresh sidebar activity
+    # Refresh sidebar activity and conversation history.
     st.rerun()
