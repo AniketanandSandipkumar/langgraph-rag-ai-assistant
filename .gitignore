@@ -41,6 +41,7 @@ Thumbs.db
 
 # Model / large generated files
 *.pkl
+!faiss_index/index.pkl
 *.joblib
 
 # Local vector databases / indexes
