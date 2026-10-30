@@ -608,3 +608,7 @@ If you find this project useful:
 ## ◈ RAGFlow AI
 
 **Agentic Intelligence. Grounded Knowledge. Interactive Experience.**
+
+---    
+
+#APP LINK: https://langgraph-rag-ai-assistant-fgbc2rngjpgaegkjwjd5yc.streamlit.app/
