@@ -1,0 +1,272 @@
+[
+  {
+    "id": "D01",
+    "type": "direct",
+    "question": "Which architecture was introduced in the 2017 paper Attention Is All You Need?",
+    "expected_topics": ["transformers"],
+    "gold_chunks": ["ai_concepts-0001"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "D02",
+    "type": "direct",
+    "question": "What does retrieval-augmented generation (RAG) do?",
+    "expected_topics": ["rag"],
+    "gold_chunks": ["ai_concepts-0002"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "D03",
+    "type": "direct",
+    "question": "How do embeddings represent text?",
+    "expected_topics": ["embeddings"],
+    "gold_chunks": ["ai_concepts-0003"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "D04",
+    "type": "direct",
+    "question": "What is the main purpose of a vector database?",
+    "expected_topics": ["vector_databases"],
+    "gold_chunks": ["ai_concepts-0004"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "D05",
+    "type": "direct",
+    "question": "Who developed FAISS?",
+    "expected_topics": ["faiss"],
+    "gold_chunks": ["ai_concepts-0005"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "D06",
+    "type": "direct",
+    "question": "How does LangGraph represent an agent workflow?",
+    "expected_topics": ["langgraph"],
+    "gold_chunks": ["ai_concepts-0006"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "D07",
+    "type": "direct",
+    "question": "What are large language models trained to predict?",
+    "expected_topics": ["llms"],
+    "gold_chunks": ["ai_concepts-0007"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "D08",
+    "type": "direct",
+    "question": "What is fine-tuning in machine learning?",
+    "expected_topics": ["fine_tuning"],
+    "gold_chunks": ["ai_concepts-0008"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "D09",
+    "type": "direct",
+    "question": "What is prompt engineering?",
+    "expected_topics": ["prompt_engineering"],
+    "gold_chunks": ["ai_concepts-0009"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "D10",
+    "type": "direct",
+    "question": "What does ReAct stand for in AI agents?",
+    "expected_topics": ["ai_agents"],
+    "gold_chunks": ["ai_concepts-0010"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "M01",
+    "type": "multi_detail",
+    "question": "Explain how RAG combines retrieval with generation and why that helps with private or up-to-date information.",
+    "expected_topics": ["rag"],
+    "gold_chunks": ["ai_concepts-0002"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "M02",
+    "type": "multi_detail",
+    "question": "Describe how embeddings support semantic search and how vector databases use them.",
+    "expected_topics": ["embeddings", "vector_databases"],
+    "gold_chunks": ["ai_concepts-0003", "ai_concepts-0004"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "M03",
+    "type": "multi_detail",
+    "question": "Why is FAISS useful as a local vector store in a RAG application?",
+    "expected_topics": ["faiss"],
+    "gold_chunks": ["ai_concepts-0005"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "M04",
+    "type": "multi_detail",
+    "question": "How do nodes and edges in LangGraph control an agent's workflow?",
+    "expected_topics": ["langgraph"],
+    "gold_chunks": ["ai_concepts-0006"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "M05",
+    "type": "multi_detail",
+    "question": "What is LoRA, and how does it make fine-tuning more efficient?",
+    "expected_topics": ["fine_tuning"],
+    "gold_chunks": ["ai_concepts-0008"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "P01",
+    "type": "paraphrase",
+    "question": "Why can transformer models handle sequence elements in parallel instead of processing them one by one like RNNs?",
+    "expected_topics": ["transformers"],
+    "gold_chunks": ["ai_concepts-0001"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "P02",
+    "type": "paraphrase",
+    "question": "How can an assistant answer using information that was not included in the model's training data?",
+    "expected_topics": ["rag"],
+    "gold_chunks": ["ai_concepts-0002"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "P03",
+    "type": "paraphrase",
+    "question": "What helps a search system find passages that mean roughly the same thing even when the wording differs?",
+    "expected_topics": ["embeddings"],
+    "gold_chunks": ["ai_concepts-0003"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "P04",
+    "type": "paraphrase",
+    "question": "Which open-source library can do local vector similarity search without a separate vector database server?",
+    "expected_topics": ["faiss"],
+    "gold_chunks": ["ai_concepts-0005"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "P05",
+    "type": "paraphrase",
+    "question": "What kind of AI system can choose to invoke tools while working toward a task?",
+    "expected_topics": ["ai_agents"],
+    "gold_chunks": ["ai_concepts-0010"],
+    "should_abstain": false,
+    "should_clarify": false
+  },
+  {
+    "id": "U01",
+    "type": "unanswerable",
+    "question": "What exact accuracy score did the original Transformer paper report on WMT 2014 English-to-German?",
+    "expected_topics": [],
+    "gold_chunks": [],
+    "should_abstain": true,
+    "should_clarify": false
+  },
+  {
+    "id": "U02",
+    "type": "unanswerable",
+    "question": "What is the current monthly price of the paid Pinecone plan?",
+    "expected_topics": [],
+    "gold_chunks": [],
+    "should_abstain": true,
+    "should_clarify": false
+  },
+  {
+    "id": "U03",
+    "type": "unanswerable",
+    "question": "Who created the first version of LangGraph, and in what month was it released?",
+    "expected_topics": [],
+    "gold_chunks": [],
+    "should_abstain": true,
+    "should_clarify": false
+  },
+  {
+    "id": "U04",
+    "type": "unanswerable",
+    "question": "What exact number of parameters does the largest model mentioned in these documents have?",
+    "expected_topics": [],
+    "gold_chunks": [],
+    "should_abstain": true,
+    "should_clarify": false
+  },
+  {
+    "id": "U05",
+    "type": "unanswerable",
+    "question": "What is the latest Gemini score on the MMLU-Pro benchmark?",
+    "expected_topics": [],
+    "gold_chunks": [],
+    "should_abstain": true,
+    "should_clarify": false
+  },
+  {
+    "id": "A01",
+    "type": "ambiguous",
+    "question": "Is it better to use a vector database or FAISS?",
+    "expected_topics": ["vector_databases", "faiss"],
+    "gold_chunks": [],
+    "should_abstain": false,
+    "should_clarify": true
+  },
+  {
+    "id": "A02",
+    "type": "ambiguous",
+    "question": "Does fine-tuning make a model better?",
+    "expected_topics": ["fine_tuning"],
+    "gold_chunks": [],
+    "should_abstain": false,
+    "should_clarify": true
+  },
+  {
+    "id": "A03",
+    "type": "ambiguous",
+    "question": "Are agents faster than ordinary LLMs?",
+    "expected_topics": ["ai_agents", "llms"],
+    "gold_chunks": [],
+    "should_abstain": false,
+    "should_clarify": true
+  },
+  {
+    "id": "A04",
+    "type": "ambiguous",
+    "question": "Which embedding is best?",
+    "expected_topics": ["embeddings"],
+    "gold_chunks": [],
+    "should_abstain": false,
+    "should_clarify": true
+  },
+  {
+    "id": "A05",
+    "type": "ambiguous",
+    "question": "Should I use RAG or prompt engineering for my application?",
+    "expected_topics": ["rag", "prompt_engineering"],
+    "gold_chunks": [],
+    "should_abstain": false,
+    "should_clarify": true
+  }
+]

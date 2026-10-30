@@ -1,0 +1,61 @@
+id,type,question,expected_topics,k,retrieved_chunk_ids,gold_chunk_ids,hit_at_k,recall_at_k,precision_at_k
+D01,direct,Which architecture was introduced in the 2017 paper Attention Is All You Need?,transformers,1,ai_concepts-0001,ai_concepts-0001,1,1.0,1.0
+D01,direct,Which architecture was introduced in the 2017 paper Attention Is All You Need?,transformers,3,ai_concepts-0001|ai_concepts-0008|ai_concepts-0007,ai_concepts-0001,1,1.0,0.3333
+D01,direct,Which architecture was introduced in the 2017 paper Attention Is All You Need?,transformers,5,ai_concepts-0001|ai_concepts-0008|ai_concepts-0007|ai_concepts-0009|ai_concepts-0003,ai_concepts-0001,1,1.0,0.2
+D02,direct,What does retrieval-augmented generation (RAG) do?,rag,1,ai_concepts-0002,ai_concepts-0002,1,1.0,1.0
+D02,direct,What does retrieval-augmented generation (RAG) do?,rag,3,ai_concepts-0002|ai_concepts-0003|ai_concepts-0005,ai_concepts-0002,1,1.0,0.3333
+D02,direct,What does retrieval-augmented generation (RAG) do?,rag,5,ai_concepts-0002|ai_concepts-0003|ai_concepts-0005|ai_concepts-0010|ai_concepts-0007,ai_concepts-0002,1,1.0,0.2
+D03,direct,How do embeddings represent text?,embeddings,1,ai_concepts-0003,ai_concepts-0003,1,1.0,1.0
+D03,direct,How do embeddings represent text?,embeddings,3,ai_concepts-0003|ai_concepts-0004|ai_concepts-0007,ai_concepts-0003,1,1.0,0.3333
+D03,direct,How do embeddings represent text?,embeddings,5,ai_concepts-0003|ai_concepts-0004|ai_concepts-0007|ai_concepts-0002|ai_concepts-0005,ai_concepts-0003,1,1.0,0.2
+D04,direct,What is the main purpose of a vector database?,vector_databases,1,ai_concepts-0004,ai_concepts-0004,1,1.0,1.0
+D04,direct,What is the main purpose of a vector database?,vector_databases,3,ai_concepts-0004|ai_concepts-0003|ai_concepts-0005,ai_concepts-0004,1,1.0,0.3333
+D04,direct,What is the main purpose of a vector database?,vector_databases,5,ai_concepts-0004|ai_concepts-0003|ai_concepts-0005|ai_concepts-0002|ai_concepts-0007,ai_concepts-0004,1,1.0,0.2
+D05,direct,Who developed FAISS?,faiss,1,ai_concepts-0005,ai_concepts-0005,1,1.0,1.0
+D05,direct,Who developed FAISS?,faiss,3,ai_concepts-0005|ai_concepts-0004|ai_concepts-0003,ai_concepts-0005,1,1.0,0.3333
+D05,direct,Who developed FAISS?,faiss,5,ai_concepts-0005|ai_concepts-0004|ai_concepts-0003|ai_concepts-0001|ai_concepts-0007,ai_concepts-0005,1,1.0,0.2
+D06,direct,How does LangGraph represent an agent workflow?,langgraph,1,ai_concepts-0006,ai_concepts-0006,1,1.0,1.0
+D06,direct,How does LangGraph represent an agent workflow?,langgraph,3,ai_concepts-0006|ai_concepts-0010|ai_concepts-0002,ai_concepts-0006,1,1.0,0.3333
+D06,direct,How does LangGraph represent an agent workflow?,langgraph,5,ai_concepts-0006|ai_concepts-0010|ai_concepts-0002|ai_concepts-0007|ai_concepts-0003,ai_concepts-0006,1,1.0,0.2
+D07,direct,What are large language models trained to predict?,llms,1,ai_concepts-0007,ai_concepts-0007,1,1.0,1.0
+D07,direct,What are large language models trained to predict?,llms,3,ai_concepts-0007|ai_concepts-0008|ai_concepts-0009,ai_concepts-0007,1,1.0,0.3333
+D07,direct,What are large language models trained to predict?,llms,5,ai_concepts-0007|ai_concepts-0008|ai_concepts-0009|ai_concepts-0001|ai_concepts-0002,ai_concepts-0007,1,1.0,0.2
+D08,direct,What is fine-tuning in machine learning?,fine_tuning,1,ai_concepts-0008,ai_concepts-0008,1,1.0,1.0
+D08,direct,What is fine-tuning in machine learning?,fine_tuning,3,ai_concepts-0008|ai_concepts-0009|ai_concepts-0001,ai_concepts-0008,1,1.0,0.3333
+D08,direct,What is fine-tuning in machine learning?,fine_tuning,5,ai_concepts-0008|ai_concepts-0009|ai_concepts-0001|ai_concepts-0007|ai_concepts-0002,ai_concepts-0008,1,1.0,0.2
+D09,direct,What is prompt engineering?,prompt_engineering,1,ai_concepts-0009,ai_concepts-0009,1,1.0,1.0
+D09,direct,What is prompt engineering?,prompt_engineering,3,ai_concepts-0009|ai_concepts-0007|ai_concepts-0008,ai_concepts-0009,1,1.0,0.3333
+D09,direct,What is prompt engineering?,prompt_engineering,5,ai_concepts-0009|ai_concepts-0007|ai_concepts-0008|ai_concepts-0010|ai_concepts-0002,ai_concepts-0009,1,1.0,0.2
+D10,direct,What does ReAct stand for in AI agents?,ai_agents,1,ai_concepts-0010,ai_concepts-0010,1,1.0,1.0
+D10,direct,What does ReAct stand for in AI agents?,ai_agents,3,ai_concepts-0010|ai_concepts-0002|ai_concepts-0005,ai_concepts-0010,1,1.0,0.3333
+D10,direct,What does ReAct stand for in AI agents?,ai_agents,5,ai_concepts-0010|ai_concepts-0002|ai_concepts-0005|ai_concepts-0001|ai_concepts-0007,ai_concepts-0010,1,1.0,0.2
+M01,multi_detail,Explain how RAG combines retrieval with generation and why that helps with private or up-to-date information.,rag,1,ai_concepts-0002,ai_concepts-0002,1,1.0,1.0
+M01,multi_detail,Explain how RAG combines retrieval with generation and why that helps with private or up-to-date information.,rag,3,ai_concepts-0002|ai_concepts-0003|ai_concepts-0005,ai_concepts-0002,1,1.0,0.3333
+M01,multi_detail,Explain how RAG combines retrieval with generation and why that helps with private or up-to-date information.,rag,5,ai_concepts-0002|ai_concepts-0003|ai_concepts-0005|ai_concepts-0007|ai_concepts-0008,ai_concepts-0002,1,1.0,0.2
+M02,multi_detail,Describe how embeddings support semantic search and how vector databases use them.,embeddings|vector_databases,1,ai_concepts-0003,ai_concepts-0003|ai_concepts-0004,1,0.5,1.0
+M02,multi_detail,Describe how embeddings support semantic search and how vector databases use them.,embeddings|vector_databases,3,ai_concepts-0003|ai_concepts-0004|ai_concepts-0005,ai_concepts-0003|ai_concepts-0004,1,1.0,0.6667
+M02,multi_detail,Describe how embeddings support semantic search and how vector databases use them.,embeddings|vector_databases,5,ai_concepts-0003|ai_concepts-0004|ai_concepts-0005|ai_concepts-0002|ai_concepts-0007,ai_concepts-0003|ai_concepts-0004,1,1.0,0.4
+M03,multi_detail,Why is FAISS useful as a local vector store in a RAG application?,faiss,1,ai_concepts-0005,ai_concepts-0005,1,1.0,1.0
+M03,multi_detail,Why is FAISS useful as a local vector store in a RAG application?,faiss,3,ai_concepts-0005|ai_concepts-0004|ai_concepts-0003,ai_concepts-0005,1,1.0,0.3333
+M03,multi_detail,Why is FAISS useful as a local vector store in a RAG application?,faiss,5,ai_concepts-0005|ai_concepts-0004|ai_concepts-0003|ai_concepts-0002|ai_concepts-0008,ai_concepts-0005,1,1.0,0.2
+M04,multi_detail,How do nodes and edges in LangGraph control an agent's workflow?,langgraph,1,ai_concepts-0006,ai_concepts-0006,1,1.0,1.0
+M04,multi_detail,How do nodes and edges in LangGraph control an agent's workflow?,langgraph,3,ai_concepts-0006|ai_concepts-0010|ai_concepts-0002,ai_concepts-0006,1,1.0,0.3333
+M04,multi_detail,How do nodes and edges in LangGraph control an agent's workflow?,langgraph,5,ai_concepts-0006|ai_concepts-0010|ai_concepts-0002|ai_concepts-0007|ai_concepts-0009,ai_concepts-0006,1,1.0,0.2
+M05,multi_detail,"What is LoRA, and how does it make fine-tuning more efficient?",fine_tuning,1,ai_concepts-0008,ai_concepts-0008,1,1.0,1.0
+M05,multi_detail,"What is LoRA, and how does it make fine-tuning more efficient?",fine_tuning,3,ai_concepts-0008|ai_concepts-0009|ai_concepts-0007,ai_concepts-0008,1,1.0,0.3333
+M05,multi_detail,"What is LoRA, and how does it make fine-tuning more efficient?",fine_tuning,5,ai_concepts-0008|ai_concepts-0009|ai_concepts-0007|ai_concepts-0001|ai_concepts-0002,ai_concepts-0008,1,1.0,0.2
+P01,paraphrase,Why can transformer models handle sequence elements in parallel instead of processing them one by one like RNNs?,transformers,1,ai_concepts-0001,ai_concepts-0001,1,1.0,1.0
+P01,paraphrase,Why can transformer models handle sequence elements in parallel instead of processing them one by one like RNNs?,transformers,3,ai_concepts-0001|ai_concepts-0007|ai_concepts-0008,ai_concepts-0001,1,1.0,0.3333
+P01,paraphrase,Why can transformer models handle sequence elements in parallel instead of processing them one by one like RNNs?,transformers,5,ai_concepts-0001|ai_concepts-0007|ai_concepts-0008|ai_concepts-0003|ai_concepts-0002,ai_concepts-0001,1,1.0,0.2
+P02,paraphrase,How can an assistant answer using information that was not included in the model's training data?,rag,1,ai_concepts-0002,ai_concepts-0002,1,1.0,1.0
+P02,paraphrase,How can an assistant answer using information that was not included in the model's training data?,rag,3,ai_concepts-0002|ai_concepts-0007|ai_concepts-0008,ai_concepts-0002,1,1.0,0.3333
+P02,paraphrase,How can an assistant answer using information that was not included in the model's training data?,rag,5,ai_concepts-0002|ai_concepts-0007|ai_concepts-0008|ai_concepts-0009|ai_concepts-0003,ai_concepts-0002,1,1.0,0.2
+P03,paraphrase,What helps a search system find passages that mean roughly the same thing even when the wording differs?,embeddings,1,ai_concepts-0003,ai_concepts-0003,1,1.0,1.0
+P03,paraphrase,What helps a search system find passages that mean roughly the same thing even when the wording differs?,embeddings,3,ai_concepts-0003|ai_concepts-0005|ai_concepts-0002,ai_concepts-0003,1,1.0,0.3333
+P03,paraphrase,What helps a search system find passages that mean roughly the same thing even when the wording differs?,embeddings,5,ai_concepts-0003|ai_concepts-0005|ai_concepts-0002|ai_concepts-0004|ai_concepts-0007,ai_concepts-0003,1,1.0,0.2
+P04,paraphrase,Which open-source library can do local vector similarity search without a separate vector database server?,faiss,1,ai_concepts-0005,ai_concepts-0005,1,1.0,1.0
+P04,paraphrase,Which open-source library can do local vector similarity search without a separate vector database server?,faiss,3,ai_concepts-0005|ai_concepts-0004|ai_concepts-0003,ai_concepts-0005,1,1.0,0.3333
+P04,paraphrase,Which open-source library can do local vector similarity search without a separate vector database server?,faiss,5,ai_concepts-0005|ai_concepts-0004|ai_concepts-0003|ai_concepts-0002|ai_concepts-0007,ai_concepts-0005,1,1.0,0.2
+P05,paraphrase,What kind of AI system can choose to invoke tools while working toward a task?,ai_agents,1,ai_concepts-0010,ai_concepts-0010,1,1.0,1.0
+P05,paraphrase,What kind of AI system can choose to invoke tools while working toward a task?,ai_agents,3,ai_concepts-0010|ai_concepts-0002|ai_concepts-0006,ai_concepts-0010,1,1.0,0.3333
+P05,paraphrase,What kind of AI system can choose to invoke tools while working toward a task?,ai_agents,5,ai_concepts-0010|ai_concepts-0002|ai_concepts-0006|ai_concepts-0009|ai_concepts-0007,ai_concepts-0010,1,1.0,0.2

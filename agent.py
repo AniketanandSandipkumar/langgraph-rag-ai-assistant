@@ -49,6 +49,41 @@ Rules:
 - If a tool returns TOOL_ERROR, explain that the operation failed; never present
   the error as a successful result.
 - Be concise, clear, and transparent about uncertainty.
+AMBIGUOUS QUESTIONS AND RECOMMENDATIONS:
+
+- If a user asks which option is "best", "better", or what they
+  "should use", determine whether the answer depends on missing
+  requirements or preferences.
+
+- If important context is missing, ask one concise clarifying
+  question before making a recommendation.
+
+- Ask about the most relevant missing criterion, such as the
+  use case, accuracy requirements, latency, budget, privacy,
+  or deployment constraints.
+
+- Do not give a definitive recommendation when the necessary
+  context is missing.
+
+- Do not abstain merely because the question is ambiguous.
+  If clarification would make the question answerable, ask
+  for that clarification instead.
+
+- Do not ask unnecessary clarifying questions for straightforward
+  factual questions that can be answered using the knowledge base.
+
+UNANSWERABLE QUESTIONS:
+
+- Base knowledge-base answers on retrieved evidence.
+
+- If the indexed documents do not contain enough information
+  to answer the question, explicitly say so.
+
+- Do not invent missing facts or present unsupported claims
+  as facts.
+
+- An inability to answer because evidence is missing is a
+  controlled abstention, not an execution error.
 """
 
 class MessagesState(TypedDict):
@@ -151,8 +186,9 @@ def get_model_with_tools():
 
 
 def llm_call(state: MessagesState) -> dict:
-    """Call the LLM while enforcing a per-request call budget."""
+    """Call the LLM with a call budget and preserve provider token usage."""
     calls_so_far = int(state.get("llm_calls", 0))
+
     if calls_so_far >= MAX_MODEL_CALLS:
         return {
             "messages": [
@@ -170,6 +206,52 @@ def llm_call(state: MessagesState) -> dict:
         response = get_model_with_tools().invoke(
             [SystemMessage(content=SYSTEM_PROMPT), *state["messages"]]
         )
+
+        # Extract token usage reported by the model provider.
+        usage = getattr(response, "usage_metadata", None) or {}
+        response_metadata = getattr(response, "response_metadata", None) or {}
+
+        provider_usage = (
+            response_metadata.get("token_usage")
+            or response_metadata.get("usage")
+            or {}
+        )
+
+        input_tokens = usage.get("input_tokens")
+        output_tokens = usage.get("output_tokens")
+        total_tokens = usage.get("total_tokens")
+
+        if input_tokens is None:
+            input_tokens = (
+                provider_usage.get("prompt_tokens")
+                or provider_usage.get("input_tokens")
+            )
+
+        if output_tokens is None:
+            output_tokens = (
+                provider_usage.get("completion_tokens")
+                or provider_usage.get("output_tokens")
+            )
+
+        if total_tokens is None:
+            total_tokens = provider_usage.get("total_tokens")
+
+        # Attach normalized usage without modifying tool calls or message content.
+        if input_tokens is not None or output_tokens is not None:
+            response_metadata = dict(response_metadata)
+            response_metadata["cost_usage"] = {
+                "input_tokens": int(input_tokens or 0),
+                "output_tokens": int(output_tokens or 0),
+                "total_tokens": int(
+                    total_tokens
+                    if total_tokens is not None
+                    else (input_tokens or 0) + (output_tokens or 0)
+                ),
+            }
+            response = response.model_copy(
+                update={"response_metadata": response_metadata}
+            )
+
     except Exception as exc:
         # Return a controlled final response instead of allowing a UI crash.
         response = AIMessage(
@@ -180,6 +262,7 @@ def llm_call(state: MessagesState) -> dict:
         )
 
     next_count = calls_so_far + 1
+
     # Do not start another tool cycle if the last allowed model call asks for tools.
     if getattr(response, "tool_calls", None) and next_count >= MAX_MODEL_CALLS:
         response = AIMessage(
@@ -189,7 +272,10 @@ def llm_call(state: MessagesState) -> dict:
             )
         )
 
-    return {"messages": [response], "llm_calls": next_count}
+    return {
+        "messages": [response],
+        "llm_calls": next_count,
+    }
 
 
 def tool_node(state: MessagesState) -> dict:

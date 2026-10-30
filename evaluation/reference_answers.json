@@ -1,0 +1,22 @@
+{
+  "D01": "The Transformer architecture, introduced in the 2017 paper Attention Is All You Need.",
+  "D02": "RAG retrieves relevant documents from a knowledge base and passes them to a language model as context for generating a response. This helps answer questions about private or up-to-date information that was not included in the model's training data.",
+  "D03": "Embeddings are numerical vector representations that capture semantic meaning. Text with similar meanings has embeddings that are close together in vector space.",
+  "D04": "A vector database stores and efficiently searches high-dimensional embeddings. It uses similarity search, often with approximate nearest neighbor algorithms, to find vectors similar to a query embedding.",
+  "D05": "FAISS was developed by Meta. It is an open-source library for efficient similarity search and clustering of dense vectors.",
+  "D06": "LangGraph represents agent workflows as graphs. Nodes represent functions such as language-model calls or tool executions, while edges define the flow of control. It supports cycles, branching, and persistent state.",
+  "D07": "Large language models are trained on massive text datasets to predict the next token in a sequence.",
+  "D08": "Fine-tuning continues training a pre-trained model on a smaller, task-specific dataset to adapt its weights to a particular domain or task. LoRA improves efficiency by updating only a small subset of parameters.",
+  "D09": "Prompt engineering is the practice of designing and optimizing inputs to a language model. Techniques include few-shot prompting, chain-of-thought prompting, and system prompts.",
+  "D10": "ReAct stands for Reason + Act. It is a framework in which an LLM alternates between reasoning about a problem and taking actions.",
+  "M01": "RAG combines retrieval with generation by first searching a knowledge base for relevant documents and then supplying those documents as context to a language model. This helps the model answer questions about private or up-to-date information that was not included in its training data.",
+  "M02": "Embeddings represent the semantic meaning of text as numerical vectors, allowing semantically similar text to be found even when wording differs. Vector databases store and efficiently search these embeddings, using similarity search and often approximate nearest neighbor algorithms to retrieve similar vectors.",
+  "M03": "FAISS is an open-source library developed by Meta for efficient similarity search and clustering of dense vectors. It can be used as a local vector store in RAG applications because it requires no external server and its index can be saved to disk.",
+  "M04": "In LangGraph, nodes represent functions such as language-model calls or tool executions, and edges define how control flows between them. Cycles and branching allow workflows to repeat actions or choose different paths, while persistent state supports stateful applications.",
+  "M05": "LoRA, or Low-Rank Adaptation, is a technique that makes fine-tuning more efficient by updating only a small subset of a model's parameters rather than all of them.",
+  "P01": "Transformers use self-attention to process sequence elements in parallel, unlike recurrent neural networks that process sequences recurrently. This can make Transformer training much faster.",
+  "P02": "RAG allows an assistant to use information outside the language model's training data by retrieving relevant documents from an external knowledge base and supplying them as context when generating an answer.",
+  "P03": "Embeddings represent semantic meaning as numerical vectors. Texts with similar meanings have nearby vectors, enabling semantic search to retrieve relevant passages despite differences in wording.",
+  "P04": "FAISS is an open-source library developed by Meta that supports local vector similarity search without requiring a separate vector database server. Its index can be saved to disk.",
+  "P05": "An AI agent is an LLM-powered system that can decide which actions to take and invoke tools to achieve a goal. The ReAct pattern combines reasoning and acting."
+}

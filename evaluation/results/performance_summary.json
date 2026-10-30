@@ -1,0 +1,85 @@
+{
+  "generated_at_utc": "2026-10-30T15:50:51.861573+00:00",
+  "project": "RAGFlow AI",
+  "benchmark_config": {
+    "repeats_per_case": 3,
+    "warmup_enabled": true,
+    "warmup_latency_seconds_unmeasured": 20.037,
+    "test_case_count": 5,
+    "measured_run_count": 15
+  },
+  "latency_seconds": {
+    "average": 10.978,
+    "median_p50": 2.56,
+    "p95": 41.67,
+    "minimum": 0.866,
+    "maximum": 48.807
+  },
+  "reliability": {
+    "successful_runs": 15,
+    "runs_with_exceptions": 0,
+    "nonempty_answers": 15
+  },
+  "model_calls": {
+    "average_per_run": 2.4,
+    "total_observed": 36,
+    "runs_with_count_available": 15
+  },
+  "token_usage": {
+    "available_runs": 15,
+    "average_input_tokens_when_available": 1915.467,
+    "average_output_tokens_when_available": 275.933,
+    "average_total_tokens_when_available": 2191.4,
+    "note": "Provider-reported usage only; missing usage is not estimated."
+  },
+  "estimated_llm_cost_usd": {
+    "total": 0.0033966,
+    "average_per_run": 0.00022644,
+    "runs_with_estimate": 15,
+    "input_rate_usd_per_1m_tokens": 0.075,
+    "output_rate_usd_per_1m_tokens": 0.3,
+    "note": "LLM-only estimate; requires token usage and current official rates. Embedding costs are excluded."
+  },
+  "by_category": {
+    "calculator": {
+      "runs": 3,
+      "average_latency_seconds": 6.178,
+      "median_latency_seconds": 6.349,
+      "successes": 3,
+      "exceptions": 0,
+      "average_model_calls": 2
+    },
+    "clarification": {
+      "runs": 3,
+      "average_latency_seconds": 4.882,
+      "median_latency_seconds": 6.451,
+      "successes": 3,
+      "exceptions": 0,
+      "average_model_calls": 1
+    },
+    "grounded_knowledge": {
+      "runs": 3,
+      "average_latency_seconds": 1.866,
+      "median_latency_seconds": 1.941,
+      "successes": 3,
+      "exceptions": 0,
+      "average_model_calls": 2
+    },
+    "multi_concept_knowledge": {
+      "runs": 3,
+      "average_latency_seconds": 2.419,
+      "median_latency_seconds": 2.354,
+      "successes": 3,
+      "exceptions": 0,
+      "average_model_calls": 2
+    },
+    "unsupported": {
+      "runs": 3,
+      "average_latency_seconds": 39.544,
+      "median_latency_seconds": 38.611,
+      "successes": 3,
+      "exceptions": 0,
+      "average_model_calls": 5
+    }
+  }
+}

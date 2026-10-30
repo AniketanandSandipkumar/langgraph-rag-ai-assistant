@@ -1,0 +1,48 @@
+﻿timestamp_utc,test_id,category,repeat,question,latency_seconds,success,answer_nonempty,error,model_calls,tool_count,tools_json,input_tokens,output_tokens,total_tokens,estimated_llm_cost_usd,answer_preview
+2026-10-30T15:48:08.922933+00:00,P01,grounded_knowledge,1,What is an embedding in machine learning?,1.941,True,True,,2,1,"[{""tool"": ""search_docs"", ""status"": ""succeeded"", ""duration_ms"": 924.7}]",1536,172,1708,0.0001668,"An **embedding** is a numerical vector that represents an item (such as a piece of text, an image, or audio) in a high‑dimensional space. The vector is produced by an encoder model (e.g., a transformer, CNN, or other neural network) and is designed so that items with similar meaning or content are close together in that space. Embeddings are the core technology behind semantic search, retrieval‑augmented generation (RAG), and many other downstream tasks. (See evidence from *ai_concepts.txt*.)"
+2026-10-30T15:48:11.313680+00:00,P01,grounded_knowledge,2,What is an embedding in machine learning?,2.39,True,True,,2,1,"[{""tool"": ""search_docs"", ""status"": ""succeeded"", ""duration_ms"": 620.3}]",1536,177,1713,0.0001683,"An **embedding** is a numerical vector that represents an item (such as a piece of text, an image, or audio) in a high‑dimensional space. The vector is produced by an encoder model (e.g., a transformer, CNN, or other neural network) and is designed so that items with similar meaning or content are close together in that space. Embeddings are the core technology behind semantic search, retrieval‑augmented generation (RAG), and many other downstream tasks. (See evidence from *ai_concepts.txt*.)"
+2026-10-30T15:48:12.618010+00:00,P01,grounded_knowledge,3,What is an embedding in machine learning?,1.268,True,True,,2,1,"[{""tool"": ""search_docs"", ""status"": ""succeeded"", ""duration_ms"": 558.3}]",1536,177,1713,0.0001683,"An **embedding** is a numerical vector that represents an item (such as a piece of text, an image, or audio) in a high‑dimensional space. The vector is produced by an encoder model (e.g., a transformer, CNN, or other neural network) and is designed so that items with similar meaning or content are close together in that space. Embeddings are the core technology behind semantic search, retrieval‑augmented generation (RAG), and many other downstream tasks. (See evidence from *ai_concepts.txt*.)"
+2026-10-30T15:48:14.961828+00:00,P02,multi_concept_knowledge,1,Explain how embeddings and a vector database work together in a RAG pipeline.,2.343,True,True,,2,1,"[{""tool"": ""search_docs"", ""status"": ""succeeded"", ""duration_ms"": 516.8}]",1560,518,2078,0.0002724,"In a Retrieval‑Augmented Generation (RAG) pipeline, **embeddings** and a **vector database** play complementary roles:
+
+| Step | What happens | Why it matters |
+|------|--------------|----------------|
+| **1. Encode the knowledge base** | Each document (or chunk of a document) is passed through an encoder model (e.g., a transformer) to produce a dense numerical vector—its *embedding*【1†source=ai_concepts.txt】. | The embedding captures the semantic content of the text, so similar passages end up "
+2026-10-30T15:48:17.522699+00:00,P02,multi_concept_knowledge,2,Explain how embeddings and a vector database work together in a RAG pipeline.,2.56,True,True,,2,1,"[{""tool"": ""search_docs"", ""status"": ""succeeded"", ""duration_ms"": 916.3}]",1560,611,2171,0.0003003,"In a Retrieval‑Augmented Generation (RAG) pipeline, **embeddings** and a **vector database** play complementary roles:
+
+| Step | What happens | Why it matters |
+|------|--------------|----------------|
+| **1. Encode the knowledge base** | Each document (or chunk of a document) is passed through an encoder model (e.g., a transformer) to produce a dense numerical vector that captures its semantic content. | Embeddings turn unstructured text into a format that can be compared mathematically. |
+| **"
+2026-10-30T15:48:19.876905+00:00,P02,multi_concept_knowledge,3,Explain how embeddings and a vector database work together in a RAG pipeline.,2.354,True,True,,2,1,"[{""tool"": ""search_docs"", ""status"": ""succeeded"", ""duration_ms"": 618.5}]",1560,647,2207,0.0003111,"In a Retrieval‑Augmented Generation (RAG) pipeline, **embeddings** and a **vector database** play complementary roles:
+
+| Step | What happens | Why it matters |
+|------|--------------|----------------|
+| **1. Encode the knowledge base** | Each document (or chunk of a document) is passed through an encoder model (e.g., a transformer) to produce a dense numerical vector that captures its semantic content. | Embeddings turn unstructured text into a format that can be compared mathematically. |
+| **"
+2026-10-30T15:48:21.414699+00:00,P03,calculator,1,Calculate 125 multiplied by 48.,1.537,True,True,,2,1,"[{""tool"": ""multiply"", ""status"": ""succeeded"", ""duration_ms"": 1.4}]",1258,133,1391,0.00013425,"125 multiplied by 48 equals **6,000**."
+2026-10-30T15:48:27.764209+00:00,P03,calculator,2,Calculate 125 multiplied by 48.,6.349,True,True,,2,1,"[{""tool"": ""multiply"", ""status"": ""succeeded"", ""duration_ms"": 1.1}]",1258,133,1391,0.00013425,"125 multiplied by 48 equals **6,000**."
+2026-10-30T15:48:38.412104+00:00,P03,calculator,3,Calculate 125 multiplied by 48.,10.647,True,True,,2,1,"[{""tool"": ""multiply"", ""status"": ""succeeded"", ""duration_ms"": 1.2}]",1258,133,1391,0.00013425,"125 multiplied by 48 equals **6,000**."
+2026-10-30T15:48:44.863170+00:00,P04,clarification,1,Which embedding model is best for my application?,6.451,True,True,,1,0,[],614,206,820,0.00010785,"I’d love to help you pick the right embedding model, but the “best” choice depends on a few key factors. Could you let me know:
+
+1. **Use case** – e.g., semantic search, clustering, classification, or something else?  
+2. **Accuracy / semantic quality** – do you need state‑of‑the‑art performance or a good trade‑off?  
+3. **Latency / throughput** – are you serving real‑time queries or batch processing?  
+4. **Budget / cost** – do you have constraints on API usage or on‑premise deployment?  
+5. **"
+2026-10-30T15:48:45.729460+00:00,P04,clarification,2,Which embedding model is best for my application?,0.866,True,True,,1,0,[],614,227,841,0.00011415,"I’m happy to help you pick an embedding model, but the “best” choice depends on a few key factors. Could you let me know:
+
+1. **Use case** – e.g., semantic search, clustering, classification, or something else?  
+2. **Accuracy / semantic quality** – Do you need state‑of‑the‑art performance or a good trade‑off?  
+3. **Latency / throughput** – Real‑time inference, batch processing, or offline?  
+4. **Budget / cost** – Are you constrained by API usage costs or can you run a local model?  
+5. **Priv"
+2026-10-30T15:48:53.058941+00:00,P04,clarification,3,Which embedding model is best for my application?,7.329,True,True,,1,0,[],614,227,841,0.00011415,"I’m happy to help you pick an embedding model, but the “best” choice depends on a few key factors. Could you let me know:
+
+1. **Use case** – e.g., semantic search, clustering, classification, or something else?  
+2. **Accuracy / semantic quality** – Do you need state‑of‑the‑art performance or a good trade‑off?  
+3. **Latency / throughput** – Real‑time inference, batch processing, or offline?  
+4. **Budget / cost** – Are you constrained by API usage costs or can you run a local model?  
+5. **Priv"
+2026-10-30T15:49:31.670475+00:00,P05,unsupported,1,"Who created the first version of LangGraph, and in what month was it released?",38.611,True,True,,5,4,"[{""tool"": ""search_docs"", ""status"": ""succeeded"", ""duration_ms"": 1006.3}, {""tool"": ""search_docs"", ""status"": ""succeeded"", ""duration_ms"": 1056.9}, {""tool"": ""search_docs"", ""status"": ""succeeded"", ""duration_ms"": 1920.0}, {""tool"": ""search_docs"", ""status"": ""succeeded"", ""duration_ms"": 961.2}]",4628,253,4881,0.000423,I reached the model-call limit before completing this request. Please simplify the question and try again.
+2026-10-30T15:50:02.891911+00:00,P05,unsupported,2,"Who created the first version of LangGraph, and in what month was it released?",31.214,True,True,,5,4,"[{""tool"": ""search_docs"", ""status"": ""succeeded"", ""duration_ms"": 782.1}, {""tool"": ""search_docs"", ""status"": ""succeeded"", ""duration_ms"": 1071.8}, {""tool"": ""search_docs"", ""status"": ""succeeded"", ""duration_ms"": 834.5}, {""tool"": ""search_docs"", ""status"": ""succeeded"", ""duration_ms"": 859.9}]",4606,261,4867,0.00042375,I reached the model-call limit before completing this request. Please simplify the question and try again.
+2026-10-30T15:50:51.700501+00:00,P05,unsupported,3,"Who created the first version of LangGraph, and in what month was it released?",48.807,True,True,,5,4,"[{""tool"": ""search_docs"", ""status"": ""succeeded"", ""duration_ms"": 1163.9}, {""tool"": ""search_docs"", ""status"": ""succeeded"", ""duration_ms"": 878.8}, {""tool"": ""search_docs"", ""status"": ""succeeded"", ""duration_ms"": 1195.9}, {""tool"": ""search_docs"", ""status"": ""succeeded"", ""duration_ms"": 1405.6}]",4594,264,4858,0.00042375,I reached the model-call limit before completing this request. Please simplify the question and try again.

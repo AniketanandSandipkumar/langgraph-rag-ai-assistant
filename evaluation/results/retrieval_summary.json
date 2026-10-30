@@ -1,0 +1,30 @@
+{
+  "evaluated_questions": 20,
+  "skipped_questions": 10,
+  "k_values": {
+    "1": {
+      "question_count": 20,
+      "hit_rate_at_k": 1.0,
+      "mean_recall_at_k": 0.975,
+      "mean_precision_at_k": 1.0
+    },
+    "3": {
+      "question_count": 20,
+      "hit_rate_at_k": 1.0,
+      "mean_recall_at_k": 1.0,
+      "mean_precision_at_k": 0.35
+    },
+    "5": {
+      "question_count": 20,
+      "hit_rate_at_k": 1.0,
+      "mean_recall_at_k": 1.0,
+      "mean_precision_at_k": 0.21
+    }
+  },
+  "caveats": [
+    "Gold chunk IDs are manually assigned in dataset.json and should be reviewed against the indexed source documents.",
+    "The evaluator checks gold IDs against current source chunk IDs, but this does not guarantee that every label is semantically correct.",
+    "Unanswerable and clarification-needed questions are excluded from retrieval metrics.",
+    "These metrics do not measure answer correctness, groundedness, latency, or tool reliability."
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "total_cases": 30,
+  "agent_runs_without_exception": 30,
+  "judge_evaluations_completed": 30,
+  "expected_behavior_counts": {
+    "answer": 20,
+    "abstain": 5,
+    "clarify": 5
+  },
+  "actual_behavior_counts": {
+    "answer": 21,
+    "abstain": 5,
+    "error": 1,
+    "clarify": 3
+  },
+  "behavior_pass_count": 27,
+  "behavior_pass_rate": 0.9,
+  "answerable_cases_scored": 20,
+  "average_correctness_score_0_to_2": 2.0,
+  "average_faithfulness_score_0_to_2": 2.0,
+  "average_relevance_score_0_to_2": 2.0,
+  "tool_error_count": 0,
+  "agent_exception_count": 0,
+  "judge_exception_count": 0,
+  "results_csv": "C:\\Users\\91810\\Downloads\\langgraph-rag-ai-assistant\\evaluation\\results\\answer_results.csv",
+  "results_summary": "C:\\Users\\91810\\Downloads\\langgraph-rag-ai-assistant\\evaluation\\results\\answer_summary.json",
+  "note": "LLM-judge scores are estimates, not ground truth. Manually review the CSV, especially borderline cases and behavior classifications. A judge failure does not mean the agent itself failed."
+}
