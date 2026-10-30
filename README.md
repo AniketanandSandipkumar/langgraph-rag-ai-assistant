@@ -2,48 +2,45 @@
 
 ### Intelligent Knowledge Assistant powered by LangGraph, RAG & Streamlit
 
-[![Python](https://img.shields.io/badge/Python-3.13-blue?logo=python\&logoColor=white)](https://www.python.org/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit\&logoColor=white)](https://streamlit.io/)
-[![LangGraph](https://img.shields.io/badge/LangGraph-Agent-1C3C3C?logo=langchain\&logoColor=white)](https://www.langchain.com/langgraph)
-[![LangChain](https://img.shields.io/badge/LangChain-Framework-1C3C3C?logo=chainlink\&logoColor=white)](https://www.langchain.com/)
+[![Python](https://img.shields.io/badge/Python-3.13-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![LangGraph](https://img.shields.io/badge/LangGraph-Agent-1C3C3C?logo=langchain&logoColor=white)](https://www.langchain.com/langgraph)
+[![LangChain](https://img.shields.io/badge/LangChain-Framework-1C3C3C?logo=chainlink&logoColor=white)](https://www.langchain.com/)
+[![FAISS](https://img.shields.io/badge/FAISS-Vector%20Search-0467DF)](https://github.com/facebookresearch/faiss)
 [![RAG](https://img.shields.io/badge/RAG-Retrieval%20Augmented%20Generation-6366F1)]()
-[![AI](https://img.shields.io/badge/AI-Agentic%20AI-8B5CF6)]()
-[![GitHub](https://img.shields.io/badge/Repository-GitHub-181717?logo=github\&logoColor=white)](https://github.com/)
 
-> **RAGFlow AI** is an intelligent knowledge assistant that combines **Retrieval-Augmented Generation (RAG)** with a **LangGraph-powered agent architecture** and a premium **Streamlit conversational interface**.
+> **RAGFlow AI** is an intelligent knowledge assistant combining Retrieval-Augmented Generation (RAG), LangGraph-based agent orchestration, FAISS vector search, and a custom Streamlit conversational interface.
 >
-> The application intelligently processes user requests, retrieves relevant knowledge when required, performs calculations through tools, and presents the execution flow through an interactive agent-activity interface.
+> The application processes user requests, retrieves relevant knowledge, executes deterministic calculator operations, and exposes agent activity through an interactive execution-tracing interface.
 
 ---
 
-## ✨ Why This Project?
+## ✨ Why RAGFlow AI?
 
-Modern AI applications are moving beyond simple chatbot interfaces.
+Modern AI applications require more than a language model connected to a chat interface.
 
-RAGFlow AI demonstrates how an AI assistant can combine:
+RAGFlow AI demonstrates an agent-based architecture capable of selecting appropriate tools, retrieving relevant information, and generating evidence-grounded responses.
 
-**User Query → Agent Reasoning → Tool Selection → Knowledge Retrieval / Calculation → Final Response**
+**Core workflow:**
 
-Instead of forcing every question through the same pipeline, the application is designed around an **agent-based workflow** capable of deciding when tools are useful.
+`User Query → LangGraph Agent → Tool Selection → Knowledge Retrieval / Calculation → Final Response`
 
-This project demonstrates practical experience with:
+The project focuses on:
 
-* 🤖 Agentic AI
-* 🔗 LangGraph
-* 📚 Retrieval-Augmented Generation
-* 🔎 Knowledge-base retrieval
-* 🛠️ Tool calling
-* 🧮 Calculator integration
-* 💬 Conversational interfaces
-* 🎨 Custom Streamlit UI
-* 📊 Agent execution tracing
-* 🧠 Stateful conversation handling
+- Agentic AI and LangGraph orchestration
+- Retrieval-Augmented Generation
+- Semantic search using embeddings and FAISS
+- Tool calling and deterministic computation
+- Context-aware response generation
+- Agent execution tracing
+- Error handling and bounded model execution
+- Evaluation of retrieval, response behavior, and performance
 
 ---
 
 ## 🖥️ Application Preview
 
-> Add screenshots of your actual application here.
+> Add screenshots of the actual running application here.
 
 ### Main Interface
 
@@ -57,299 +54,363 @@ This project demonstrates practical experience with:
 
 ![Knowledge Base Search](visualizations/knowledge-search.png)
 
-> **Tip:** For GitHub, screenshots of the actual running application will make this README significantly more impressive than text alone.
-
 ---
 
 # 🚀 Key Features
 
 ## 🤖 LangGraph Agent
 
-The application uses a LangGraph-based agent to process incoming user requests.
+The application uses LangGraph to orchestrate the interaction between the language model and available tools.
 
-The agent receives the user's message and determines the appropriate execution path instead of relying on a fixed sequence.
+The agent can:
 
-```text
-User Query
-    │
-    ▼
-┌──────────────────┐
-│  LangGraph Agent │
-└────────┬─────────┘
-         │
-         ├───────────────┐
-         ▼               ▼
- Knowledge Search    Calculator
-         │               │
-         └───────┬───────┘
-                 ▼
-          Final AI Response
-```
+- Process user queries.
+- Decide when a tool is required.
+- Invoke knowledge retrieval or calculator tools.
+- Interpret tool outputs.
+- Generate a final response.
+- Handle tool failures and model-call limits.
 
----
+The graph uses a state-based execution workflow, with message history and LLM-call tracking.
 
 ## 📚 Retrieval-Augmented Generation
 
-RAG enables the assistant to retrieve relevant information from a knowledge base before generating an answer.
+RAG allows the assistant to retrieve relevant information from its knowledge base before generating a response.
 
-This helps the system provide responses grounded in available information rather than relying exclusively on the language model's internal knowledge.
-
-### RAG workflow
+The retrieval workflow:
 
 ```text
 User Question
-      │
-      ▼
+      |
+      v
 Query Processing
-      │
-      ▼
-Knowledge Base Search
-      │
-      ▼
-Relevant Information
-      │
-      ▼
-LLM Generation
-      │
-      ▼
-Grounded Response
+      |
+      v
+Embedding Generation
+      |
+      v
+FAISS Similarity Search
+      |
+      v
+Relevant Knowledge Chunks
+      |
+      v
+LLM Response Generation
+      |
+      v
+Grounded Answer
 ```
 
----
+## 🔎 Semantic Knowledge Retrieval
 
-## 🔎 Knowledge Base Search
+The knowledge base contains AI and machine-learning concepts, including:
 
-The assistant provides a dedicated knowledge-base search capability.
+- Transformers
+- Retrieval-Augmented Generation
+- Embeddings
+- Vector Databases
+- FAISS
+- LangGraph
+- Large Language Models
+- Fine-tuning
+- Prompt Engineering
+- AI Agents
 
-Users can ask questions requiring information from the application's available knowledge source and allow the agent to retrieve relevant content.
-
-Example:
-
-```text
-"Search the knowledge base and explain the most relevant information."
-```
-
----
+Text is divided into chunks using `RecursiveCharacterTextSplitter`, embedded, and indexed for similarity-based retrieval.
 
 ## 🧮 Calculator Tool
 
-The agent can also route numerical questions to a calculator tool.
+The agent supports deterministic numerical operations through calculator tools:
 
-Example:
+- Addition
+- Multiplication
+- Division
 
-```text
-Calculate 125 * 48 and explain the result.
-```
-
-This demonstrates the ability to combine **LLM reasoning with deterministic tool execution**.
-
----
+This demonstrates how LLM reasoning can be combined with deterministic tool execution.
 
 ## 💬 Conversational Interface
 
-The application provides a conversational interface built with Streamlit.
+The Streamlit application includes:
 
-It supports:
-
-* User messages
-* AI responses
-* Conversation history
-* Custom avatars
-* Chat input
-* Suggested prompts
-* New conversation functionality
-
-Conversation state is maintained using Streamlit session state.
-
----
+- Chat interface
+- Conversation history
+- Custom avatars
+- Suggested prompts
+- New conversation functionality
+- Custom CSS styling
+- Agent activity panels
 
 ## 🔍 Agent Activity Monitoring
 
-One of the project's standout features is its **agent execution trace**.
+The interface exposes execution information, including:
 
-The sidebar provides visibility into:
+- Tool names
+- Tool inputs and outputs
+- Execution status
+- Tool execution duration
+- Turn-by-turn activity
 
-* Tool calls
-* Tool names
-* Tool inputs
-* Tool outputs
-* Execution status
-* Turn-by-turn activity
+This provides visibility into how the agent processes requests.
 
-This makes the application more transparent and useful for debugging and understanding agent behavior.
+---
 
-Example:
+# 🧠 System Architecture
 
 ```text
-Turn 1
- └── Knowledge Search
-      ├── Input
-      └── Output
-
-Turn 2
- └── Calculator
-      ├── Input
-      └── Output
+                    +----------------------+
+                    |      User Query      |
+                    +----------+-----------+
+                               |
+                               v
+                    +----------------------+
+                    |     Streamlit UI     |
+                    +----------+-----------+
+                               |
+                               v
+                    +----------------------+
+                    |    LangGraph Agent   |
+                    +----------+-----------+
+                               |
+                   +-----------+-----------+
+                   |                       |
+                   v                       v
+          +----------------+      +----------------+
+          | Knowledge Base |      |   Calculator   |
+          | Search Tool    |      |     Tools      |
+          +-------+--------+      +-------+--------+
+                  |                       |
+                  +-----------+-----------+
+                              |
+                              v
+                    +----------------------+
+                    |    LLM Response      |
+                    +----------+-----------+
+                               |
+                               v
+                    +----------------------+
+                    | Conversation & Trace |
+                    +----------------------+
 ```
-
----
-
-# 🎨 Premium Streamlit UI
-
-The application goes beyond Streamlit's default appearance with a custom-designed interface.
-
-The UI includes:
-
-* 🌑 Dark theme
-* ✨ Gradient visual elements
-* 🎯 Custom branding
-* 📱 Wide responsive layout
-* 🧩 Capability cards
-* 📊 Agent activity panels
-* 💬 Custom chat styling
-* 🔘 Interactive controls
-* 🎨 Custom CSS
-* ⚡ Processing status indicators
-
-The application is branded as **RAGFlow AI — LangGraph Assistant** and presents capabilities such as Knowledge Base Search, Calculator, LangGraph Agent, and Retrieval Augmented Generation.
-
----
-
-# 🧠 Architecture
-
-At a high level, the application follows an agentic architecture:
-
-```text
-                         ┌──────────────────────┐
-                         │      User Query      │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │   Streamlit UI       │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │   LangGraph Agent    │
-                         └──────────┬───────────┘
-                                    │
-                       ┌────────────┴────────────┐
-                       │                         │
-                       ▼                         ▼
-              ┌────────────────┐       ┌────────────────┐
-              │ Knowledge Base │       │   Calculator   │
-              │     Search     │       │      Tool      │
-              └───────┬────────┘       └───────┬────────┘
-                      │                        │
-                      └────────────┬───────────┘
-                                   │
-                                   ▼
-                         ┌──────────────────────┐
-                         │     AI Response      │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │ Conversation History │
-                         │ + Agent Activity     │
-                         └──────────────────────┘
-```
-
----
-
-# 🔄 Request Lifecycle
-
-When a user submits a question:
-
-### 1. User Input
-
-The question is captured through Streamlit's chat interface.
-
-### 2. State Initialization
-
-The application creates an agent state containing the user's message and LLM call tracking.
-
-### 3. Agent Execution
-
-The request is passed to the LangGraph agent.
-
-### 4. Tool Selection
-
-Depending on the request, the agent can invoke an appropriate tool.
-
-### 5. Tool Execution
-
-The selected tool performs its task and returns its result.
-
-### 6. Response Generation
-
-The agent produces the final response based on the available information.
-
-### 7. Trace Generation
-
-Tool calls and their outputs are recorded and displayed in the sidebar.
-
-### 8. Conversation Update
-
-The user and assistant messages are stored in the current session.
-
-The Streamlit application initializes and maintains both `chat_history` and `tool_traces` in session state.
 
 ---
 
 # 🛠️ Technology Stack
 
-| Technology         | Purpose                                     |
-| ------------------ | ------------------------------------------- |
-| 🐍 Python 3.13     | Application development                     |
-| 🖥️ Streamlit      | Web application & chat UI                   |
-| 🔗 LangGraph       | Agent orchestration                         |
-| 🦜 LangChain       | LLM/agent ecosystem                         |
-| 📚 RAG             | Knowledge-grounded generation               |
-| 🔎 Retrieval       | Knowledge-base search                       |
-| 🧮 Calculator Tool | Deterministic numerical computation         |
-| 🎨 HTML/CSS        | Custom UI styling                           |
-| 🧠 LLM             | Natural-language understanding & generation |
+| Technology | Purpose |
+|---|---|
+| Python 3.13 | Application development |
+| Streamlit | Conversational interface |
+| LangGraph | Agent orchestration |
+| LangChain | LLM and tool integration |
+| Groq | Language model inference |
+| Google Gemini Embeddings | Semantic embedding generation |
+| FAISS | Vector similarity search |
+| RecursiveCharacterTextSplitter | Document chunking |
+| JSON / CSV | Evaluation datasets and results |
+
+---
+
+# 📊 Evaluation & Benchmarking
+
+An important part of RAGFlow AI is its evaluation framework.
+
+Rather than relying only on manual testing, the project includes dedicated evaluation scripts for retrieval quality, answer behavior, reliability, performance, and estimated LLM cost.
+
+The evaluation artifacts are available in the `evaluation/` directory.
+
+## 1. Retrieval Evaluation
+
+**Script:** `evaluation/evaluate_retrieval.py`
+
+The retrieval evaluation measures how effectively the FAISS knowledge base retrieves relevant chunks for a collection of test questions.
+
+The evaluation uses manually validated gold chunk identifiers.
+
+### Results
+
+| Metric | Result |
+|---|---:|
+| Answerable test cases evaluated | 20 |
+| Recall@1 | 0.975 |
+| Hit Rate@1 | 1.000 |
+| Recall@3 | 1.000 |
+| Hit Rate@3 | 1.000 |
+| Precision@3 | 0.350 |
+| Recall@5 | 1.000 |
+| Hit Rate@5 | 1.000 |
+| Precision@5 | 0.210 |
+
+**Interpretation:**
+
+- At k=3, all evaluated answerable queries retrieved their relevant gold chunks.
+- Recall reached 1.000 at k=3 and remained 1.000 at k=5.
+- Precision decreases as more chunks are retrieved, indicating that larger retrieval sets also contain less relevant chunks.
+
+Ten unanswerable or clarification-oriented cases were excluded from this retrieval metric calculation.
+
+## 2. Answer Quality & Behavioral Evaluation
+
+**Script:** `evaluation/evaluate_answers.py`
+
+The answer evaluation tests whether the agent follows the expected response behavior for different categories of questions.
+
+The test dataset contains 30 cases:
+
+| Expected behavior | Test cases |
+|---|---:|
+| Answer | 20 |
+| Abstain | 5 |
+| Clarify | 5 |
+| **Total** | **30** |
+
+The evaluation uses an LLM-based judge to assess answer correctness, faithfulness, and relevance.
+
+### Results
+
+| Metric | Result |
+|---|---:|
+| Total test cases | 30 |
+| Behavioral matches | 27 |
+| Behavioral pass rate | 90% |
+| Average correctness on answerable cases | 2.0 / 2 |
+| Average faithfulness on answerable cases | 2.0 / 2 |
+| Average relevance on answerable cases | 2.0 / 2 |
+| Tool errors | 0 |
+| Agent exceptions | 0 |
+| Judge exceptions | 0 |
+
+The evaluation recorded some mismatches involving unsupported questions and ambiguous questions requiring clarification.
+
+**Important:** The 90% result represents agreement with the expected behavioral categories. The answer-quality scores are based on an LLM judge and should not be interpreted as independent human-verified accuracy.
+
+## 3. Reliability Smoke Testing
+
+**Script:** `evaluation/test_reliability.py`
+
+The reliability tests exercise representative application scenarios:
+
+- Grounded knowledge retrieval
+- Unsupported questions
+- Ambiguous recommendations
+- Calculator operations
+- Missing application context
+
+The tests inspect agent responses, tool usage, model-call counts, and execution behavior.
+
+The diagnostic run completed without unhandled Python exceptions. However, the unsupported-question scenario exposed a model-call-limit issue involving repeated retrieval attempts.
+
+These tests are diagnostic smoke tests, not a statistically established reliability rate.
+
+## 4. Performance & Cost Evaluation
+
+**Script:** `evaluation/evaluate_performance.py`
+
+The performance benchmark measures execution latency, response availability, model calls, token usage, and estimated language-model cost.
+
+### Benchmark methodology
+
+- Five representative scenarios.
+- Three measured repetitions per scenario.
+- Fifteen measured requests.
+- One warm-up request excluded from the measurements.
+
+Scenarios include:
+
+1. Grounded knowledge question.
+2. Multi-concept RAG question.
+3. Calculator operation.
+4. Clarification-oriented question.
+5. Unsupported knowledge question.
+
+### Performance results
+
+| Metric | Measured result |
+|---|---:|
+| Measured requests | 15 |
+| Non-empty responses | 15 / 15 |
+| Unhandled exceptions | 0 |
+| Average latency | 10.978 seconds |
+| Median latency (P50) | 2.56 seconds |
+| P95 latency | 41.67 seconds |
+| Average model calls | 2.4 |
+
+The P95 latency is influenced by slower unsupported-question scenarios involving repeated model and retrieval calls.
+
+### Estimated LLM cost
+
+| Metric | Estimated cost |
+|---|---:|
+| Total cost across 15 requests | $0.00339660 |
+| Average cost per request | $0.00022644 |
+| Projected cost for 100 similar requests | $0.022644 |
+| Projected cost for 1,000 similar requests | $0.22644 |
+
+The estimate uses configured Groq input/output token pricing for the benchmark.
+
+**Cost limitations:**
+
+- These figures represent estimated LLM inference cost only.
+- Gemini embedding charges are excluded.
+- Hosting and infrastructure expenses are excluded.
+- Projections assume a similar request and token-usage distribution.
+- Actual costs vary with model usage and provider pricing.
+
+**Performance interpretation:** A non-empty response is not necessarily a correct response. The 15/15 figure measures response availability, not factual accuracy.
 
 ---
 
 # 📂 Project Structure
 
 ```text
-RAGFlow-AI/
+langgraph-rag-ai-assistant/
 │
 ├── app.py
 ├── agent.py
+├── ingest.py
 ├── requirements.txt
-├── README.md
+├── .gitignore
 │
-├── data/
-│   └── ...
+├── sample_docs/
+│   └── ai_concepts.txt
 │
-├── knowledge_base/
-│   └── ...
+├── faiss_index/
+│   ├── index.faiss
+│   └── index.pkl
 │
-├── visualizations/
-│   ├── ragflow-main.png
-│   ├── agent-trace.png
-│   └── knowledge-search.png
+├── evaluation/
+│   ├── __init__.py
+│   ├── README.md
+│   ├── dataset.json
+│   ├── reference_answers.json
+│   ├── evaluate_retrieval.py
+│   ├── evaluate_answers.py
+│   ├── evaluate_performance.py
+│   ├── test_reliability.py
+│   │
+│   └── results/
+│       ├── retrieval_results.csv
+│       ├── retrieval_summary.json
+│       ├── answer_results.csv
+│       ├── answer_summary.json
+│       ├── reliability_smoke_results.json
+│       ├── performance_results.csv
+│       └── performance_summary.json
 │
-└── docs/
-    └── ...
+└── visualizations/
+    ├── ragflow-main.png
+    ├── agent-trace.png
+    └── knowledge-search.png
 ```
-
-> Adjust the folder names above to match your actual repository structure.
 
 ---
 
-# ⚙️ Installation
+# ⚙️ Installation & Setup
 
 ## 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
-cd YOUR-REPOSITORY
+git clone https://github.com/AniketanandSandipkumar/langgraph-rag-ai-assistant.git
+cd langgraph-rag-ai-assistant
 ```
 
 ## 2. Create a virtual environment
@@ -368,19 +429,19 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
----
-
 ## 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
+## 4. Configure API credentials
 
-# ▶️ Run the Application
+Configure the required Groq and Google API credentials using environment variables or the secrets configuration supported by your deployment.
 
-Start the Streamlit application with:
+Never commit API keys, credentials, or `.env` files to GitHub.
+
+## 5. Run the application
 
 ```bash
 streamlit run app.py
@@ -388,193 +449,131 @@ streamlit run app.py
 
 The application will open in your browser.
 
-The project's current Streamlit entry point is `app.py`.
+---
+
+# 🧪 Running the Evaluation Suite
+
+Run the following commands from the repository root.
+
+### Retrieval evaluation
+
+```bash
+python -m evaluation.evaluate_retrieval
+```
+
+### Answer evaluation
+
+```bash
+python -m evaluation.evaluate_answers
+```
+
+### Reliability smoke tests
+
+```bash
+python -m evaluation.test_reliability
+```
+
+### Performance and cost benchmark
+
+```bash
+python -m evaluation.evaluate_performance
+```
+
+Evaluation outputs are saved under:
+
+```text
+evaluation/results/
+```
+
+The CSV files contain individual test or benchmark results, while the JSON summaries provide aggregated metrics.
+
+---
+
+# 🔐 Security & Configuration
+
+- Keep API credentials outside source control.
+- Use Streamlit secrets for deployed applications where applicable.
+- Exclude `.env`, virtual environments, Python cache files, and other sensitive artifacts from Git.
+- Preserve the FAISS index files required by the deployed application.
 
 ---
 
 # 💡 Example Queries
 
-Try asking:
-
-### 📚 Knowledge Retrieval
+**Knowledge Retrieval**
 
 ```text
 Search the knowledge base and explain the most relevant information.
 ```
 
-### 🧠 RAG
+**RAG**
 
 ```text
-Explain how Retrieval Augmented Generation works.
+Explain how embeddings and vector databases work together in a RAG pipeline.
 ```
 
-### 🧮 Calculation
+**Calculation**
 
 ```text
-Calculate 125 * 48 and explain the result.
+Calculate 125 multiplied by 48.
 ```
 
-### 🤖 LangGraph
+**LangGraph**
 
 ```text
 What is LangGraph and why is it useful for AI agents?
 ```
 
-The application also provides these example prompts directly on its welcome screen.
-
 ---
 
-# 📊 What This Project Demonstrates
+# 🎯 What This Project Demonstrates
 
-### Technical Skills
+### AI Engineering
 
-* Python application development
-* LangGraph agent workflows
-* RAG architecture
-* Tool calling
-* LLM integration
-* State management
-* Streamlit application development
-* Custom HTML/CSS styling
-* Conversational AI
-* Agent observability
+- Agentic AI workflows
+- LangGraph state-based orchestration
+- Retrieval-Augmented Generation
+- Embedding-based semantic search
+- Vector databases and FAISS
+- LLM integration
+- Tool calling
 
-### AI/ML Concepts
+### Evaluation & Engineering
 
-* Retrieval-Augmented Generation
-* Agentic workflows
-* Tool-augmented LLMs
-* Knowledge retrieval
-* Context-aware generation
-* Deterministic tool execution
-* Human-readable agent traces
+- Retrieval evaluation using gold chunk identifiers
+- Answer behavior evaluation
+- LLM-as-a-judge evaluation
+- Reliability smoke testing
+- Latency benchmarking
+- Token-usage tracking
+- Estimated inference cost analysis
+- Error handling and bounded model execution
 
-### Software Engineering
+### Application Development
 
-* Modular architecture
-* Session-state management
-* Error-resistant tool handling
-* Interactive UI design
-* Separation of agent and interface logic
-* Reproducible environment setup
-
----
-
-# 🔐 Environment Variables
-
-If your `agent.py` or other project files require API keys, create a `.env` file:
-
-```env
-OPENAI_API_KEY=your_api_key_here
-```
-
-Do **not** commit API keys or other secrets to GitHub.
-
-Add the following to `.gitignore`:
-
-```gitignore
-.env
-.venv/
-__pycache__/
-*.pyc
-```
-
-> Update this section according to the actual LLM/provider configuration used by your `agent.py`.
+- Python application development
+- Streamlit UI development
+- Modular architecture
+- Conversation state management
+- Interactive execution traces
+- Deployment configuration
 
 ---
 
 # 🚀 Future Improvements
 
-Potential extensions for the project include:
+Potential extensions include:
 
-* [ ] Persistent conversation history
-* [ ] Multiple knowledge bases
-* [ ] Document upload functionality
-* [ ] PDF/CSV/website ingestion
-* [ ] Streaming LLM responses
-* [ ] Source citations in RAG responses
-* [ ] User authentication
-* [ ] Conversation export
-* [ ] LangSmith-based observability
-* [ ] Cloud deployment
-* [ ] Advanced evaluation of retrieval quality
-* [ ] RAGAS-based RAG evaluation
-* [ ] Multi-agent workflows
-
----
-
-# 📈 Future Architecture
-
-The project can be extended into a production-oriented AI platform:
-
-```text
-                 ┌───────────────────────┐
-                 │      Web Client       │
-                 └───────────┬───────────┘
-                             │
-                             ▼
-                 ┌───────────────────────┐
-                 │      AI Gateway       │
-                 └───────────┬───────────┘
-                             │
-                             ▼
-                 ┌───────────────────────┐
-                 │   LangGraph Agent     │
-                 └───────────┬───────────┘
-                             │
-            ┌────────────────┼────────────────┐
-            ▼                ▼                ▼
-      ┌──────────┐     ┌──────────┐    ┌────────────┐
-      │   RAG    │     │  Tools   │    │  Memory    │
-      └────┬─────┘     └────┬─────┘    └─────┬──────┘
-           │                │                │
-           ▼                ▼                ▼
-      Vector DB        External APIs    Persistent DB
-                             │
-                             ▼
-                    ┌────────────────┐
-                    │  LLM Response  │
-                    └────────────────┘
-```
-
----
-
-# 🏆 Project Highlights
-
-| Area            | Implementation          |
-| --------------- | ----------------------- |
-| Architecture    | Agentic AI              |
-| Agent Framework | LangGraph               |
-| AI Pattern      | RAG                     |
-| Interface       | Streamlit               |
-| Retrieval       | Knowledge Base Search   |
-| Tool Use        | Calculator              |
-| State           | Streamlit Session State |
-| Observability   | Tool Execution Traces   |
-| UI              | Custom HTML/CSS         |
-| Python          | 3.13                    |
-
----
-
-# 🎯 Why It Matters
-
-This project goes beyond building a basic chatbot.
-
-It demonstrates the transition from:
-
-```text
-Traditional Chatbot
-       ↓
-LLM Application
-       ↓
-RAG Application
-       ↓
-Tool-Augmented AI
-       ↓
-Agentic AI System
-```
-
-The focus is on building an AI application that can **reason about the task, use appropriate capabilities, retrieve information when required, execute tools, and present the resulting workflow to the user**.
+- [ ] Persistent conversation memory
+- [ ] Multiple knowledge bases
+- [ ] PDF, CSV, and website ingestion
+- [ ] Streaming responses
+- [ ] Improved source citations
+- [ ] Authentication and role-based access
+- [ ] Advanced retrieval strategies
+- [ ] Human-reviewed evaluation datasets
+- [ ] More extensive load and concurrency testing
+- [ ] Production monitoring and observability
 
 ---
 
@@ -586,35 +585,26 @@ The focus is on building an AI application that can **reason about the task, use
 
 Interested in:
 
-* 🤖 Artificial Intelligence
-* 🧠 Machine Learning
-* 📚 Generative AI
-* 🔗 LLM & Agentic Systems
-* 📊 Data Science
-* 🔎 Retrieval-Augmented Generation
+- Artificial Intelligence
+- Machine Learning
+- Generative AI
+- LLM & Agentic Systems
+- Data Science
+- Retrieval-Augmented Generation
 
 ---
 
 # ⭐ Support
 
-If you find this project useful or interesting:
+If you find this project useful:
 
-⭐ **Star the repository**
-
-🍴 **Fork the project**
-
-🐛 **Open an issue**
-
-💡 **Suggest an improvement**
+- ⭐ Star the repository
+- 🍴 Fork the project
+- 🐛 Open an issue
+- 💡 Suggest an improvement
 
 ---
 
-## 📌 Final Note
-
-RAGFlow AI was built to explore how modern **LLMs, RAG pipelines, agent orchestration, tool calling, and interactive interfaces** can be combined into a practical AI assistant.
-
-> **From asking a question → to retrieving knowledge → to executing tools → to generating an intelligent response.**
-
-### ◈ RAGFlow AI
+## ◈ RAGFlow AI
 
 **Agentic Intelligence. Grounded Knowledge. Interactive Experience.**
